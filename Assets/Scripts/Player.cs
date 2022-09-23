@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     private PlayerInput _input;
     private CharacterController _characon;
     private Vector2 _move_direction;
-    private Vector2 _look_direction;
 
     private void Awake()
     {
@@ -23,7 +22,6 @@ public class Player : MonoBehaviour
         Debug.Log("OnEnable");
         _input.actions["Move"].performed += OnMove;
         _input.actions["Move"].canceled += OnMove;
-        _input.actions["Look"].performed += OnLook;
         _input.actions["Fire"].started += OnFire;
     }
 
@@ -32,7 +30,6 @@ public class Player : MonoBehaviour
         Debug.Log("OnDisable");
         _input.actions["Move"].performed -= OnMove;
         _input.actions["Move"].canceled -= OnMove;
-        _input.actions["Look"].started -= OnLook;
         _input.actions["Fire"].started -= OnFire;
     }
 
@@ -41,9 +38,16 @@ public class Player : MonoBehaviour
         _move_direction = obj.ReadValue<Vector2>();
     }
 
-    private void OnLook(InputAction.CallbackContext obj)
+    private void Aim(Vector2 screen_pointer)
     {
-        _look_direction = obj.ReadValue<Vector2>();
+        var ray = Camera.main.ScreenPointToRay(screen_pointer);
+        Plane plane = new Plane();
+        float distance = 0;
+        plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
+        if (plane.Raycast(ray, out distance))
+        {
+            transform.LookAt(ray.GetPoint(distance));
+        }
     }
 
     private void OnFire(InputAction.CallbackContext obj)
@@ -60,6 +64,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Move();
+        Aim(Mouse.current.position.ReadValue());
     }
 
 }
