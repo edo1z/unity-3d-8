@@ -4,22 +4,31 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _walk_speed = 8f;
+    public float _gravity = -15.0f;
 
+    // player
+    [SerializeField] private float _walk_speed = 8f;
+    [SerializeField] private float _grounded_offset = -0.14f;
+    [SerializeField] private float _grounded_radius = 0.28f;
+    [SerializeField] private LayerMask _ground_layers;
+
+    private float _vertical_velocity;
+    private float _terminal_velocity = 53.0f;
+    public bool is_grounded = true;
+    private Vector2 _move_direction;
+
+    // Object
     private PlayerInput _input;
     private CharacterController _characon;
-    private Vector2 _move_direction;
 
     private void Awake()
     {
-        Debug.Log("Awake");
         TryGetComponent(out _input);
         TryGetComponent(out _characon);
     }
 
     private void OnEnable()
     {
-        Debug.Log("OnEnable");
         _input.actions["Move"].performed += OnMove;
         _input.actions["Move"].canceled += OnMove;
         _input.actions["Fire"].started += OnFire;
@@ -27,7 +36,6 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("OnDisable");
         _input.actions["Move"].performed -= OnMove;
         _input.actions["Move"].canceled -= OnMove;
         _input.actions["Fire"].started -= OnFire;
@@ -58,13 +66,40 @@ public class Player : MonoBehaviour
     private void Move()
     {
         Vector3 direction = new Vector3(_move_direction.x, 0, _move_direction.y).normalized;
-        _characon.Move(direction * _walk_speed * Time.deltaTime);
+        Vector3 _move = direction * _walk_speed * Time.deltaTime;
+        _move += new Vector3(0f, _vertical_velocity, 0f) * Time.deltaTime;
+        _characon.Move(_move);
     }
 
     private void Update()
     {
-        Move();
         Aim(Mouse.current.position.ReadValue());
+        Gravity();
+        GroundedCheck();
+        Move();
+    }
+
+    private void GroundedCheck()
+    {
+        Vector3 sphere_position = new Vector3(transform.position.x, transform.position.y - _grounded_offset,
+            transform.position.z);
+        is_grounded = Physics.CheckSphere(sphere_position, _grounded_radius, _ground_layers,
+            QueryTriggerInteraction.Ignore);
+    }
+
+    private void Gravity()
+    {
+        if (is_grounded)
+        {
+            if (_vertical_velocity < 0.0f)
+            {
+                _vertical_velocity = -2f;
+            }
+        }
+        if (_vertical_velocity < _terminal_velocity)
+        {
+            _vertical_velocity += _gravity * Time.deltaTime;
+        }
     }
 
 }
