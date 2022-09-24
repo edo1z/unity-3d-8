@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private static GameObject _bullet;
-    private static float _bullet_speed = 20f;
+    private static float _bullet_speed = 30f;
     private static float _bullet_lifetime_limit = 3f;
     private float _bullet_lifetime = 0f;
 
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     public static Bullet create(Vector3 posi, Vector3 direction)
     {
         Vector3 velocity = direction * _bullet_speed;
-        posi += velocity * 0.05f;
+        posi += velocity * 0.02f;
         GameObject g = (GameObject)Instantiate(GetPrefab(), posi, Quaternion.identity);
         Bullet b = g.GetComponent<Bullet>();
         b.SetVelocity(velocity);
