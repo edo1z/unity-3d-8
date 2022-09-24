@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private static GameObject _bullet;
+    private static GameObject _particles;
     private static float _bullet_speed = 30f;
     private static float _bullet_lifetime_limit = 3f;
     private float _bullet_lifetime = 0f;
@@ -14,6 +15,11 @@ public class Bullet : MonoBehaviour
     private static GameObject GetPrefab()
     {
         return _bullet ?? (_bullet = (GameObject)Resources.Load("Prefabs/Bullet"));
+    }
+
+    private static GameObject GetParticles()
+    {
+        return _particles ?? (_particles = (GameObject)Resources.Load("Prefabs/Particles/DestroyedBullet"));
     }
 
     public static Bullet create(Vector3 posi, Vector3 direction)
@@ -41,6 +47,10 @@ public class Bullet : MonoBehaviour
         _bullet_lifetime += Time.deltaTime;
         if (_bullet_lifetime > _bullet_lifetime_limit)
         {
+            GameObject g = Instantiate(GetParticles(), transform.position, Quaternion.identity);
+            ParticleSystem p = g.GetComponent<ParticleSystem>();
+            p.Play();
+            Destroy(p.gameObject, 3f);
             Destroy(gameObject);
         }
     }
