@@ -46,21 +46,28 @@ public class Player : MonoBehaviour
         _move_direction = obj.ReadValue<Vector2>();
     }
 
-    private void Aim(Vector2 screen_pointer)
+    private void AimAndFire(bool fire)
     {
+        Vector2 screen_pointer = Mouse.current.position.ReadValue();
         var ray = Camera.main.ScreenPointToRay(screen_pointer);
         Plane plane = new Plane();
         float distance = 0;
         plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
         if (plane.Raycast(ray, out distance))
         {
-            transform.LookAt(ray.GetPoint(distance));
+            Vector3 point = ray.GetPoint(distance);
+            transform.LookAt(point);
+            if (fire)
+            {
+                Vector3 direction = (point - transform.position).normalized;
+                Bullet.create(transform.position, direction);
+            }
         }
     }
 
     private void OnFire(InputAction.CallbackContext obj)
     {
-        Debug.Log("on fire");
+        AimAndFire(true);
     }
 
     private void Move()
@@ -73,7 +80,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Aim(Mouse.current.position.ReadValue());
+        AimAndFire(false);
         Gravity();
         GroundedCheck();
         Move();

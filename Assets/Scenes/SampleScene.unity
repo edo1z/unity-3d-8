@@ -1265,7 +1265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338960b96382b1c4eb9592ac57f81d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walk_speed: 5
+  _gravity: -15
+  _walk_speed: 10
+  _grounded_offset: -0.14
+  _grounded_radius: 0.28
+  _ground_layers:
+    serializedVersion: 2
+    m_Bits: 1
+  is_grounded: 1
 --- !u!1 &796967317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,7 +2798,6 @@ GameObject:
   - component: {fileID: 1927240293}
   - component: {fileID: 1927240296}
   - component: {fileID: 1927240295}
-  - component: {fileID: 1927240297}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -2864,16 +2870,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927240292}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &1927240297
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927240292}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000004, y: 2.000001, z: 1.0000005}
-  m_Center: {x: 0.00000005960466, y: 2.5410992e-21, z: -0.00000008940699}
