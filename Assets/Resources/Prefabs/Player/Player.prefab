@@ -179,13 +179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338960b96382b1c4eb9592ac57f81d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravity: -15
   _walk_speed: 10
   _grounded_offset: -0.14
   _grounded_radius: 0.28
   _ground_layers:
     serializedVersion: 2
     m_Bits: 1
+  _gravity: -15
   is_grounded: 1
 --- !u!1 &1850124984014867204
 GameObject:

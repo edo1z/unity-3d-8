@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    private static int max_enemies = 3;
+    private static int max_enemies = 5;
     private static int enemies_destroyed_count = 0;
-    private static int player_down_count = 0;
+    private static int player_destroyed_count = 0;
     private static float game_time = 0f;
 
     private static Vector3 player_spawn_position = new Vector3(15f, 0.5f, -4.5f);
@@ -24,9 +24,20 @@ public class Game : MonoBehaviour
         Debug.Log("DestroyedEnemy:" + enemies_destroyed_count);
     }
 
+    public static void DestroyedPlayer()
+    {
+        player_destroyed_count++;
+        Debug.Log("DestroyedPlayer:" + player_destroyed_count);
+    }
+
     public static Vector3 GetEnemyPosi(int enemy_index)
     {
         return enemies_spawn_positions[enemy_index];
+    }
+
+    public static Vector3 GetPlayerPosi()
+    {
+      return player_spawn_position;
     }
 
     private void Awake()

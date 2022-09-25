@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
 
     private NavMeshAgent _enemy;
     private float _fired_time = 0f;
-    private float _fired_interval = 3f;
+    private float _fired_interval = 2f;
     private float _respawn_interval = 3f;
     private int _enemy_index;
     private bool _destroyed = false;

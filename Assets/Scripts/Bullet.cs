@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
         return _enemy_bullet ?? (_enemy_bullet = (GameObject)Resources.Load("Prefabs/Enemy/EnemyBullet"));
     }
 
-    private static GameObject GetPlayerBulletParticles()
+    public static GameObject GetPlayerBulletParticles()
     {
         return _player_bullet_particles ?? (_player_bullet_particles = (GameObject)Resources.Load("Prefabs/Player/PlayerDestroyedBullet"));
     }
