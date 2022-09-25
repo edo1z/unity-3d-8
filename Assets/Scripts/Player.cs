@@ -132,6 +132,7 @@ public class Player : MonoBehaviour
     private void DestroyPlayer()
     {
         _destroyed = true;
+        _characon.enabled = false;
         Game.DestroyedPlayer();
         transform.localScale = new Vector3(0, 0, 0);
         StartCoroutine(Respawn());
@@ -142,6 +143,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_respawn_interval);
         transform.localScale = new Vector3(1f, 1f, 1f);
         transform.position = Game.GetPlayerPosi();
+        _characon.enabled = true;
         _destroyed = false;
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    private static int max_enemies = 5;
+    private static int max_enemies = 3;
     private static int enemies_destroyed_count = 0;
     private static int player_destroyed_count = 0;
     private static float game_time = 0f;
