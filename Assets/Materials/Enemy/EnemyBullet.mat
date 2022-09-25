@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerBGun
+  m_Name: EnemyBullet
   m_Shader: {fileID: -6465566751694194690, guid: d348b91a1f64fe14086cc856890a2a8d,
     type: 3}
   m_ValidKeywords: []

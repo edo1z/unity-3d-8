@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerB
+  m_Name: EnemyGun
   m_Shader: {fileID: -6465566751694194690, guid: d348b91a1f64fe14086cc856890a2a8d,
     type: 3}
   m_ValidKeywords: []
@@ -51,6 +51,6 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BodyColor: {r: 0.40392157, g: 0.07058822, b: 0.27751076, a: 0}
-    - _Color: {r: 2.5636775, g: 0.2757161, b: 1.2706192, a: 0}
+    - _BodyColor: {r: 0.69803923, g: 0.047058813, b: 0.38879845, a: 0}
+    - _Color: {r: 18.074575, g: 0.7570507, b: 8.454575, a: 0}
   m_BuildTextureStacks: []

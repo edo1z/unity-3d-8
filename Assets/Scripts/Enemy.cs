@@ -5,20 +5,23 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+ 
+    private static GameObject _player;
+    private NavMeshAgent _enemy;
 
-    private NavMeshAgent enemy;
-    [SerializeField] private GameObject target;
+    private static GameObject GetPlayer()
+    {
+      return _player ?? (_player = GameObject.FindWithTag("Player"));
+    }
 
     void Awake()
     {
-      enemy = gameObject.GetComponent<NavMeshAgent>();
+      _enemy = gameObject.GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-      if (target != null) {
-        enemy.destination = target.transform.position;
-      }
+        _enemy.destination = GetPlayer().transform.position;
     }
 
     void OnCollisionEnter(Collision collision)

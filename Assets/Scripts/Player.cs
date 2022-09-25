@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
             if (fire)
             {
                 Vector3 direction = (point - transform.position).normalized;
-                Bullet.create(transform.position, direction);
+                Bullet.create("Player", transform.position, direction);
             }
         }
     }

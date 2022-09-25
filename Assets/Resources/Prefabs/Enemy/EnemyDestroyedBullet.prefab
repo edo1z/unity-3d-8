@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4985103827163611322}
   - component: {fileID: 4985103827163611321}
   m_Layer: 0
-  m_Name: DestroyedBullet
+  m_Name: EnemyDestroyedBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.09638655, g: 0.72586256, b: 0.8962264, a: 1}
+      maxColor: {r: 0.8980392, g: 0.098039225, b: 0.7311268, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4761,7 +4761,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67dea08d473ce5143b5a3f9c03b0e25a, type: 2}
+  - {fileID: 2100000, guid: 8293f910d8c460d47a78951aa2d899e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
