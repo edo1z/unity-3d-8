@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
 
     private static GameObject _player;
     private NavMeshAgent _enemy;
+    private float _fired_time = 0f;
+    private float _fired_interval = 5f;
 
     private static GameObject GetPlayer()
     {
@@ -21,7 +23,15 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        _enemy.destination = GetPlayer().transform.position;
+        Vector3 player_position = GetPlayer().transform.position;
+        _enemy.destination = player_position;
+        _fired_time += Time.deltaTime;
+        if (_fired_time > _fired_interval)
+        {
+          _fired_time = 0f;
+          Vector3 direction = (player_position - transform.position).normalized;
+          Bullet.create("Enemy", transform.position, direction);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
