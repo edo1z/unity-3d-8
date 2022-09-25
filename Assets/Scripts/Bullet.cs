@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     {
         return _player_bullet ?? (_player_bullet = (GameObject)Resources.Load("Prefabs/Player/PlayerBullet"));
     }
-    
+
     private static GameObject GetEnemyBullet()
     {
         return _enemy_bullet ?? (_enemy_bullet = (GameObject)Resources.Load("Prefabs/Enemy/EnemyBullet"));
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
         return _player_bullet_particles ?? (_player_bullet_particles = (GameObject)Resources.Load("Prefabs/Player/PlayerDestroyedBullet"));
     }
 
-    private static GameObject GetEnemyBulletParticles()
+    public static GameObject GetEnemyBulletParticles()
     {
         return _enemy_bullet_particles ?? (_enemy_bullet_particles = (GameObject)Resources.Load("Prefabs/Enemy/EnemyDestroyedBullet"));
     }
@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
 
     public void SetBulletType(string type)
     {
-      _bullet_type = type;
+        _bullet_type = type;
     }
 
     private void Awake()

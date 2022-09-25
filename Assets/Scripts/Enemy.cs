@@ -5,18 +5,18 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
- 
+
     private static GameObject _player;
     private NavMeshAgent _enemy;
 
     private static GameObject GetPlayer()
     {
-      return _player ?? (_player = GameObject.FindWithTag("Player"));
+        return _player ?? (_player = GameObject.FindWithTag("Player"));
     }
 
     void Awake()
     {
-      _enemy = gameObject.GetComponent<NavMeshAgent>();
+        _enemy = gameObject.GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -26,7 +26,15 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-      string tag = collision.collider.tag;
-      Debug.Log("Collision! " + tag);
+        string tag = collision.collider.tag;
+        if (tag == "PlayerBullet")
+        {
+            GameObject particles = Bullet.GetEnemyBulletParticles();
+            GameObject g = Instantiate(particles, transform.position, Quaternion.identity);
+            ParticleSystem p = g.GetComponent<ParticleSystem>();
+            p.Play();
+            Destroy(p.gameObject, 3f);
+            Destroy(gameObject);
+        }
     }
 }
