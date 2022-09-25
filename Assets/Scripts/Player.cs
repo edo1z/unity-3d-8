@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    private static GameObject _player;
+
     public float _gravity = -15.0f;
 
     // player
@@ -20,6 +22,17 @@ public class Player : MonoBehaviour
     // Object
     private PlayerInput _input;
     private CharacterController _characon;
+
+    private static GameObject GetPlayer()
+    {
+        return _player ?? (_player = (GameObject)Resources.Load("Prefabs/Player/Player"));
+    }
+
+    public static Player Spawn(Vector3 posi)
+    {
+        GameObject g = Instantiate(GetPlayer(), posi, Quaternion.identity);
+        return g.GetComponent<Player>();
+    }
 
     private void Awake()
     {
